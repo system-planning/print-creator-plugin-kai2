@@ -18,7 +18,11 @@
     "required_params": ["pconfig"]
   },
   "desktop": {
-    "js": ["js/desktop.js"],
-    "css": []
-  }
+    "js": ["js/dist/desktop.js"],
+    "css": ["css/kintone-lib.min.css"]
+  },
+  "homepage_url": {
+    "ja": "https://bozuman.cybozu.com/k/47946/show#record=59",
+    "en": "https://bozuman.cybozu.com/k/47946/show#record=59"
+ }
 }
