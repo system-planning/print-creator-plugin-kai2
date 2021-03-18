@@ -1,0 +1,24 @@
+{
+  "manifest_version": 1,
+  "version": 1,
+  "type": "APP",
+  "name": {
+    "ja": "【社内版】プリントクリエイタープラグイン改",
+    "en": "【bozuman】print-creator-plugin-kai"
+  },
+  "description": {
+    "ja": "bozuman用プリントクリエイタープラグインです。詳しくはこちらをご覧ください。",
+    "en": "print-creator-plugin for bozuman only."
+  },
+  "icon": "image/icon.png",
+  "config": {
+    "html": "html/config.html",
+    "js": ["js/dist/config.js"],
+    "css": ["css/51-modern-default.css", "css/config.css"],
+    "required_params": ["pconfig"]
+  },
+  "desktop": {
+    "js": ["js/dist/desktop.js"],
+    "css": []
+  }
+}
