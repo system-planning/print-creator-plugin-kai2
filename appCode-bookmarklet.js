@@ -1,0 +1,1 @@
+javascript:(fetch(`${location.origin}/api${location.pathname}/show/light`).then((response) => response.json()).then((data) => {alert(data.appCode);}))

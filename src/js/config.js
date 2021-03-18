@@ -25,7 +25,7 @@ const saveConfig = () => {
     }
 
     sheets.push({
-      id,
+      id: Number(id),
       title,
     });
   }

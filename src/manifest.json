@@ -3,12 +3,12 @@
   "version": 1,
   "type": "APP",
   "name": {
-    "ja": "【社内版】プリントクリエイタープラグイン改",
-    "en": "【bozuman】print-creator-plugin-kai"
+    "ja": "【社内用】プリントクリエイタープラグイン改",
+    "en": "【Cybozu】print-creator-plugin-kai"
   },
   "description": {
-    "ja": "bozuman用プリントクリエイタープラグインです。詳しくはこちらをご覧ください。",
-    "en": "print-creator-plugin for bozuman only."
+    "ja": "社内用プリントクリエイタープラグインです",
+    "en": "print-creator-plugin for Cybozu only."
   },
   "icon": "image/icon.png",
   "config": {
@@ -18,7 +18,7 @@
     "required_params": ["pconfig"]
   },
   "desktop": {
-    "js": ["js/dist/desktop.js"],
+    "js": ["js/desktop.js"],
     "css": []
   }
 }
