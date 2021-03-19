@@ -18,7 +18,7 @@
     "required_params": ["pconfig"]
   },
   "desktop": {
-    "js": ["js/dist/desktop.js"],
+    "js": ["js/dist/main.js"],
     "css": ["css/kintone-lib.min.css"]
   },
   "homepage_url": {

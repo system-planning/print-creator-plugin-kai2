@@ -5,7 +5,7 @@ module.exports = {
   target: ['web'],
   entry: {
     config: './src/js/config.js',
-    desktop: './src/js/desktop.js',
+    main: './src/js/main.js',
   },
   output: {
     path: path.resolve(__dirname, 'src', 'js', 'dist'),
