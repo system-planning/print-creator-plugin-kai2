@@ -16,8 +16,8 @@ if (Object.prototype.hasOwnProperty.call(pconfig, 'indexShow')) {
 }
 
 window._pcreatorConfig = {
-  appCode: pconfig.appCode,
   baseUrl: '//print.kintoneapp.com',
+  token: pconfig.apiToken,
   sheets: pconfig.sheets,
   useAutoSave: useAutoSave, // 添付ファイルフィールドへの自動保存
 };
