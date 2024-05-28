@@ -24,9 +24,33 @@ window._pcreatorConfig = {
 const wait = new Promise((resolve) => resolve());
 
 const showEvent = function (event) {
-  console.log('useAutoSave: ', useAutoSave);
   window._pcreatorConfig.event = event;
   wait.then(() => printCreator());
+  if (!useAutoSave) {
+    const removeAutoSave = function () {
+      const removeEl =
+        document.querySelector(
+          '#pc-auto-save-app > div > div:nth-child(2) > section'
+        ) ||
+        document.querySelector('#pc-auto-save-app > div > div:nth-child(2)');
+      if (removeEl) removeEl.remove();
+    };
+    const observer = new MutationObserver(removeAutoSave);
+    const header =
+      document.querySelector(
+        'body > div.container-gaia.app-index-container-gaia.no-navimenu-gaia.no-actionmenu-gaia > div.contents-actionmenu-gaia > div:nth-child(2) > div.gaia-argoui-app-index-toolbar > div > div.kintone-app-headermenu-space'
+      ) ||
+      document.querySelector(
+        'body > div.container-gaia.no-navimenu-gaia.no-actionmenu-gaia > div:nth-child(2) > div.gaia-argoui-app-show-menu > div.kintone-app-record-headermenu-space'
+      );
+    if (header) {
+      console.log('found header');
+      observer.observe(header, {
+        childList: true,
+        subtree: true,
+      });
+    }
+  }
   return event;
 };
 
