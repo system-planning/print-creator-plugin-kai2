@@ -24,6 +24,7 @@ window._pcreatorConfig = {
 const wait = new Promise((resolve) => resolve());
 
 const showEvent = function (event) {
+  console.log('useAutoSave: ', useAutoSave);
   window._pcreatorConfig.event = event;
   wait.then(() => printCreator());
   return event;
