@@ -28,24 +28,27 @@ const showEvent = function (event) {
   wait.then(() => printCreator());
   if (!useAutoSave) {
     const removeAutoSave = function () {
-      const removeEl =
-        document.querySelector(
-          '#pc-auto-save-app > div > div:nth-child(2) > section'
-        ) ||
-        document.querySelector('#pc-auto-save-app > div > div:nth-child(2)');
-      if (removeEl) removeEl.remove();
+      const removeEl = document.getElementsByClassName(
+        'kintoneplugin-select-outer'
+      );
+      if (removeEl.length === 2) removeEl[1].remove();
     };
     const observer = new MutationObserver(removeAutoSave);
-    const header =
-      document.querySelector(
-        'body > div.container-gaia.app-index-container-gaia.no-navimenu-gaia.no-actionmenu-gaia > div.contents-actionmenu-gaia > div:nth-child(2) > div.gaia-argoui-app-index-toolbar > div > div.kintone-app-headermenu-space'
-      ) ||
-      document.querySelector(
-        'body > div.container-gaia.no-navimenu-gaia.no-actionmenu-gaia > div:nth-child(2) > div.gaia-argoui-app-show-menu > div.kintone-app-record-headermenu-space'
-      );
-    if (header) {
+    const indexHeader = document.getElementsByClassName(
+      'kintone-app-headermenu-space'
+    );
+    const detailHeader = document.getElementsByClassName(
+      'kintone-app-record-headermenu-space'
+    );
+    if (indexHeader.length) {
       console.log('found header');
-      observer.observe(header, {
+      observer.observe(indexHeader[0], {
+        childList: true,
+        subtree: true,
+      });
+    } else if (detailHeader.length) {
+      console.log('found header');
+      observer.observe(detailHeader[0], {
         childList: true,
         subtree: true,
       });
