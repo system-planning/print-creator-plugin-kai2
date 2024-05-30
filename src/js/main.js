@@ -18,7 +18,6 @@ if (Object.prototype.hasOwnProperty.call(pconfig, 'indexShow')) {
 window._pcreatorConfig = {
   baseUrl: '//print.kintoneapp.com',
   token: pconfig.apiToken,
-  useAutoSave: useAutoSave, // 添付ファイルフィールドへの自動保存
 };
 
 const wait = new Promise((resolve) => resolve());
