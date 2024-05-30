@@ -33,7 +33,6 @@ const removeAutoSaveMenu = function (className) {
     const removeEl = document.getElementsByClassName(
       'kintoneplugin-select-outer'
     );
-    // if (removeEl.length === 2) removeEl[1].remove();
     if (removeEl.length) {
       removeEl[1].remove();
       observer.disconnect();
