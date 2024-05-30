@@ -26,39 +26,38 @@ const wait = new Promise((resolve) => resolve());
 const showEvent = function (event) {
   window._pcreatorConfig.event = event;
   wait.then(() => printCreator());
-  if (!useAutoSave) {
-    const removeAutoSave = function () {
-      const removeEl = document.getElementsByClassName(
-        'kintoneplugin-select-outer'
-      );
-      if (removeEl.length === 2) removeEl[1].remove();
-    };
-    const observer = new MutationObserver(removeAutoSave);
-    const indexHeader = document.getElementsByClassName(
-      'kintone-app-headermenu-space'
-    );
-    const detailHeader = document.getElementsByClassName(
-      'kintone-app-record-headermenu-space'
-    );
-    if (indexHeader.length) {
-      console.log('found header');
-      observer.observe(indexHeader[0], {
-        childList: true,
-        subtree: true,
-      });
-    } else if (detailHeader.length) {
-      console.log('found header');
-      observer.observe(detailHeader[0], {
-        childList: true,
-        subtree: true,
-      });
-    }
-  }
-  return event;
 };
 
-kintone.events.on(['app.record.detail.show'], showEvent);
+const removeAutoSaveMenu = function (className) {
+  const observer = new MutationObserver(function () {
+    const removeEl = document.getElementsByClassName(
+      'kintoneplugin-select-outer'
+    );
+    // if (removeEl.length === 2) removeEl[1].remove();
+    if (removeEl.length) {
+      removeEl[1].remove();
+      observer.disconnect();
+    }
+  });
+  const header = document.getElementsByClassName(className);
+  if (header.length) {
+    observer.observe(header[0], {
+      childList: true,
+      subtree: true,
+    });
+  }
+};
+
+kintone.events.on(['app.record.detail.show'], (event) => {
+  showEvent(event);
+  if (!useAutoSave) removeAutoSaveMenu('kintone-app-record-headermenu-space');
+  return event;
+});
 
 if (indexShow) {
-  kintone.events.on(['app.record.index.show'], showEvent);
+  kintone.events.on(['app.record.index.show'], (event) => {
+    showEvent(event);
+    if (!useAutoSave) removeAutoSaveMenu('kintone-app-headermenu-space');
+    return event;
+  });
 }
