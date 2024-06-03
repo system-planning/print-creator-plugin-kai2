@@ -1,5 +1,5 @@
 {
-  "name": "print-creator-plugin-kai",
+  "name": "print-creator-plugin-kai-2",
   "version": "1.0.0",
   "scripts": {
     "start": "node scripts/npm-start.js",
@@ -9,24 +9,24 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@cybozu/eslint-config": "^12.0.0",
-    "@kintone/plugin-uploader": "^4.3.0",
+    "@cybozu/eslint-config": "^23.0.0",
+    "@kintone/plugin-uploader": "^9.1.1",
     "npm-run-all": "^4.1.5",
-    "eslint": "^7.22.0",
-    "@babel/core": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
-    "@kintone/webpack-plugin-kintone-plugin": "^4.0.15",
-    "babel-loader": "^8.2.2",
-    "core-js": "^3.9.1",
-    "css-loader": "^5.1.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.26.3",
-    "webpack-cli": "^4.5.0",
-    "prettier": "^2.2.1",
-    "@kintone/rest-api-client": "^1.11.1",
-    "@kintone/plugin-packer": "^4.0.0"
+    "eslint": "^9.3.0",
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
+    "@kintone/webpack-plugin-kintone-plugin": "^8.0.8",
+    "babel-loader": "^9.1.3",
+    "core-js": "^3.37.1",
+    "css-loader": "^7.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "prettier": "^3.2.5",
+    "@kintone/rest-api-client": "^5.5.1",
+    "@kintone/plugin-packer": "^8.0.6"
   }
 }

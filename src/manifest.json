@@ -3,8 +3,8 @@
   "version": 1,
   "type": "APP",
   "name": {
-    "ja": "【社内用】プリントクリエイタープラグイン改",
-    "en": "【Cybozu】print-creator-plugin-kai"
+    "ja": "【社内用】プリントクリエイタープラグイン改2",
+    "en": "【Cybozu】print-creator-plugin-kai-2"
   },
   "description": {
     "ja": "社内用プリントクリエイタープラグインです",
@@ -22,7 +22,7 @@
     "css": ["css/kintone-lib.min.css"]
   },
   "homepage_url": {
-    "ja": "https://bozuman.cybozu.com/k/#/space/2968/thread/53059",
-    "en": "https://bozuman.cybozu.com/k/#/space/2968/thread/53059"
+    "ja": "https://bozuman.cybozu.com/k/#/space/2968/thread/91027",
+    "en": "https://bozuman.cybozu.com/k/#/space/2968/thread/91027"
  }
 }

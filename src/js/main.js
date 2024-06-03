@@ -16,10 +16,8 @@ if (Object.prototype.hasOwnProperty.call(pconfig, 'indexShow')) {
 }
 
 window._pcreatorConfig = {
-  appCode: pconfig.appCode,
   baseUrl: '//print.kintoneapp.com',
-  sheets: pconfig.sheets,
-  useAutoSave: useAutoSave, // 添付ファイルフィールドへの自動保存
+  token: pconfig.apiToken,
 };
 
 const wait = new Promise((resolve) => resolve());
@@ -27,11 +25,37 @@ const wait = new Promise((resolve) => resolve());
 const showEvent = function (event) {
   window._pcreatorConfig.event = event;
   wait.then(() => printCreator());
-  return event;
 };
 
-kintone.events.on(['app.record.detail.show'], showEvent);
+const removeAutoSaveMenu = function (className) {
+  const observer = new MutationObserver(function () {
+    const removeEl = document.getElementsByClassName(
+      'kintoneplugin-select-outer'
+    );
+    if (removeEl.length) {
+      removeEl[1].remove();
+      observer.disconnect();
+    }
+  });
+  const header = document.getElementsByClassName(className);
+  if (header.length) {
+    observer.observe(header[0], {
+      childList: true,
+      subtree: true,
+    });
+  }
+};
+
+kintone.events.on(['app.record.detail.show'], (event) => {
+  showEvent(event);
+  if (!useAutoSave) removeAutoSaveMenu('kintone-app-record-headermenu-space');
+  return event;
+});
 
 if (indexShow) {
-  kintone.events.on(['app.record.index.show'], showEvent);
+  kintone.events.on(['app.record.index.show'], (event) => {
+    showEvent(event);
+    if (!useAutoSave) removeAutoSaveMenu('kintone-app-headermenu-space');
+    return event;
+  });
 }

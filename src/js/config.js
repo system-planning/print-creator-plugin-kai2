@@ -1,41 +1,22 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 const PLUGIN_ID = kintone.$PLUGIN_ID;
 
 const saveConfig = () => {
-  const appCode = document.querySelector('#pc-app-code').value;
+  const apiToken = document.querySelector('#pc-api-token').value;
 
-  if (!appCode) {
-    alert('appCodeを入力してください。Please input appCode.');
+  if (!apiToken) {
+    alert('APIトークンを入力してください。Please input API Token.');
     return;
-  }
-
-  const row = document.querySelectorAll('.tr-sheet');
-  const sheets = [];
-
-  for (const tr of row) {
-    const id = tr.querySelector('.pc-sheet-id').value;
-    const title = tr.querySelector('.pc-sheet-title').value;
-
-    if (!id || !title) {
-      alert('帳票IDと名前を入力してください。Please input sheet id and title.');
-      return;
-    }
-
-    sheets.push({
-      id: Number(id),
-      title,
-    });
   }
 
   const useAutoSave = document.querySelector('#useAutoSave').checked;
   const indexShow = document.querySelector('#indexShow').checked;
 
   const config = {
-    appCode,
-    sheets,
+    apiToken,
     useAutoSave,
     indexShow,
   };
@@ -44,89 +25,7 @@ const saveConfig = () => {
 };
 
 const PluginConfig = (props) => {
-  const appCode = props.pconfig.appCode;
-
-  let psheet = [
-    {
-      id: '',
-      title: '',
-      key: Math.random().toString(32).substring(2),
-    },
-  ];
-  if (props.pconfig.sheets) {
-    psheet = props.pconfig.sheets.map(({ id, title }) => ({
-      id,
-      title,
-      key: Math.random().toString(32).substring(2),
-    }));
-  }
-
-  const [sheetList, setSheetList] = useState(psheet);
-
-  const addRow = () => {
-    const newSheetList = [
-      ...sheetList,
-      { id: '', title: '', key: Math.random().toString(32).substring(2) },
-    ];
-    setSheetList(newSheetList);
-  };
-
-  const deleteRow = (index) => {
-    if (sheetList.length === 1) {
-      return;
-    }
-
-    const newSheetList = sheetList.filter((n, i) => i !== index);
-    setSheetList(newSheetList);
-  };
-
-  const trSheets = [];
-  sheetList.forEach((sheet, index) => {
-    trSheets.push(
-      <tr className="tr-sheet" key={sheet.key}>
-        <td>
-          <div className="kintoneplugin-table-td-control">
-            <div className="kintoneplugin-table-td-control-value">
-              <div className="kintoneplugin-input-outer">
-                <input
-                  className="kintoneplugin-input-text pc-sheet-id"
-                  type="text"
-                  defaultValue={sheet.id}
-                />
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div className="kintoneplugin-table-td-control">
-            <div className="kintoneplugin-table-td-control-value">
-              <div className="kintoneplugin-input-outer">
-                <input
-                  className="kintoneplugin-input-text pc-sheet-title"
-                  type="text"
-                  defaultValue={sheet.title}
-                />
-              </div>
-            </div>
-          </div>
-        </td>
-        <td className="kintoneplugin-table-td-operation">
-          <button
-            onClick={addRow}
-            type="button"
-            className="kintoneplugin-button-add-row-image"
-            title="Add row"
-          />
-          <button
-            onClick={() => deleteRow(index)}
-            type="button"
-            className="kintoneplugin-button-remove-row-image"
-            title="Delete this row"
-          />
-        </td>
-      </tr>
-    );
-  });
+  const apiToken = props.pconfig.apiToken;
 
   // 自動保存、一括出力対応
   let useAutoSave = true;
@@ -143,33 +42,17 @@ const PluginConfig = (props) => {
     <div>
       <div className="config-row">
         <div className="kintoneplugin-title">
-          appCode<span className="kintoneplugin-require">*</span>
+          APIトークン<span className="kintoneplugin-require">*</span>
         </div>
         <div className="kintoneplugin-input-outer">
           <input
-            id="pc-app-code"
+            id="pc-api-token"
             className="kintoneplugin-input-text"
             type="text"
             size="50"
-            defaultValue={appCode}
+            defaultValue={apiToken}
           />
         </div>
-      </div>
-      <div className="config-row">
-        <table className="kintoneplugin-table">
-          <thead>
-            <tr>
-              <th className="kintoneplugin-table-th">
-                <span className="title">帳票ID</span>
-              </th>
-              <th className="kintoneplugin-table-th">
-                <span className="title">帳票名</span>
-              </th>
-              <th className="kintoneplugin-table-th-blankspace" />
-            </tr>
-          </thead>
-          <tbody>{trSheets}</tbody>
-        </table>
       </div>
       <div className="config-row">
         <div className="kintoneplugin-input-checkbox">
